@@ -93,7 +93,7 @@
                       		</div>
                       		<div class="col-md-6">
                       			@if(isset($botao))
-	                  	  	  		<a class="btn btn-primary pull-right" href="{{ route($botao['rota']) }}"> {{ $botao['nome'] }}</a>
+	                  	  	  		<a class="btn btn-primary pull-right" href="{{ route($botao['rota'], isset($botao['params']) ? $botao['params'] : []) }}"> {{ $botao['nome'] }}</a>
 	                  	  	  	@endif
                       		</div>
 	               	  	  <hr>

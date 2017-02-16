@@ -28,12 +28,20 @@ class ReunioesController extends Controller
     }
 
     public function adicionarParticipantes($id){
-        return 'lol';
+        $reuniao = Reuniao::find($id);
+        $participantes = $reuniao->participantes;
+        $usuarios
+        return view('users.reunioes.adicionar-participantes')->with([
+            "reuniao" => $reuniao,
+            'titulo' => 'Adicionando participantes',
+            "usuarios" => $usuarios,
+            "botao" => ["nome" => 'Ver participantes',"rota" => "users.reunioes.participantes", 'params' => ["id" => $reuniao->id]]
+            ]);
     }
 
     public function delete($id){
-    	$reuniao = Reuniao::destroy($id);
-     	return redirect(route("users.reunioes.index"));
+        $reuniao = Reuniao::destroy($id);
+        return redirect(route("users.reunioes.index"));
     }
 
     public function participantes($id){
@@ -42,7 +50,8 @@ class ReunioesController extends Controller
         return view('users.reunioes.participantes')->with([
             "reuniao" => $reuniao,
             "participantes" => $participantes,
-            "botao" => ["nome" => 'Adicionar participantes',"rota" => "users.reunioes.participantes.add", 'parms' = '["id" => "' + $reuniao->id + '"]']
+            'titulo' => 'Participantes da reuniao',
+            "botao" => ["nome" => 'Adicionar participantes',"rota" => "users.reunioes.participantes.add", 'params' => ["id" => $reuniao->id]]
             ]);
     }
 
