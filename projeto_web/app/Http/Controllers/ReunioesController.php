@@ -30,7 +30,12 @@ class ReunioesController extends Controller
     public function adicionarParticipantes($id){
         $reuniao = Reuniao::find($id);
         $participantes = $reuniao->participantes;
-        $usuarios
+        $usuarios = User::get();
+
+        $usuarios = array_filter(User::get(), function($val){
+
+        });
+
         return view('users.reunioes.adicionar-participantes')->with([
             "reuniao" => $reuniao,
             'titulo' => 'Adicionando participantes',
