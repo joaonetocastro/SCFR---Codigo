@@ -37,13 +37,16 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::group(['prefix' => 'usuario'], function () {
-    Route::get('/', 'UserController@control');
+    Route::get('/', 'UserController@control')->name('overview');
     Route::group(['prefix' => 'reunioes'], function () {
         Route::get('/', 'ReunioesController@index')->name('users.reunioes.index');
         Route::get('create', 'ReunioesController@create')->name('users.reunioes.create');
+        Route::get('iniciar/{id}', 'ReunioesController@iniciar')->name('users.reunioes.iniciar');
+        Route::get('iniciar/{reuniao_id}/{user_id}', 'ReunioesController@marcarPresenca')->name('users.reunioes.presenca');
+        Route::get('encerrar/{reuniao_id}', 'ReunioesController@encerrar')->name('users.reunioes.encerrar');
         Route::post('save', 'ReunioesController@save')->name('users.reunioes.save');
         Route::get('participantes/{id}', 'ReunioesController@participantes')->name('users.reunioes.participantes');
-        Route::get('adicionar-participantes/{id}', 'ReunioesController@adicionarParticipantes')->name('users.reunioes.participantes.add');
+        Route::post('participantes', 'ReunioesController@updateParticipantes')->name('users.reunioes.participantes.update');
         Route::get('delete/{id}', 'ReunioesController@delete')->name('users.reunioes.delete');
         // Uses Auth Middleware
     });

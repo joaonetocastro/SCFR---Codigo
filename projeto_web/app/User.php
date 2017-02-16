@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function reunioes(){
         return $this->belongsToMany('App\Reuniao');
     }
+
+    public function profissao(){
+        return $this->belongsTo('App\Profissao');
+    }
 }

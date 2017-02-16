@@ -58,7 +58,7 @@
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li class="active">
-							<a href="">
+							<a href="{{ route('overview') }}">
 							<i class="glyphicon glyphicon-home"></i>
 							Overview </a>
 						</li>

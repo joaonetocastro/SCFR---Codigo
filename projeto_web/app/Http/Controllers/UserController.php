@@ -5,14 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Hash;
+use Auth;
 use App\User;
 use App\Profissao;
 class UserController extends Controller
 {
     public function control(){
-        $users = User::get();
+        $user = Auth::user();
+        $reunioes = $user->reunioes;
+        $reunioes = $user->reunioes()->where('reunioes.status', '!=', 1)->get();
         return view('users.index')->with([
-            "titulo" => "Bem vindo", 
+            "titulo" => "Próximas reuniões", 
+            'reunioes' => $reunioes
             ]);
     }
 
